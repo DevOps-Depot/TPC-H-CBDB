@@ -5,13 +5,20 @@ export SCHEMA_NAME="tpch"
 export GREENPLUM_PATH=$GPHOME/greenplum_path.sh
 export CHIP_TYPE="arm"
 
+# to connect directly to GP
+export PSQL_OPTIONS="-p 5432"
+# to connect through pgbouncer
+#export PSQL_OPTIONS="-p 6543 -U dsbench"
+
 # benchmark options
 export GEN_DATA_SCALE="1"
 export MULTI_USER_COUNT="2"
 
 # step options
+# step 00_compile_tpch
 export RUN_COMPILE_TPCH="true"
 
+# step 01_gen_data
 # To run another TPC-H with a different BENCH_ROLE using existing tables and data
 # the queries need to be regenerated with the new role
 # change BENCH_ROLE and set RUN_GEN_DATA to true and GEN_NEW_DATA to false
@@ -20,8 +27,10 @@ export RUN_COMPILE_TPCH="true"
 export RUN_GEN_DATA="true"
 export GEN_NEW_DATA="true"
 
+# step 02_init
 export RUN_INIT="true"
 
+# step 03_ddl
 # To run another TPC-H with a different BENCH_ROLE using existing tables and data
 # change BENCH_ROLE and set RUN_DDL to true and DROP_EXISTING_TABLES to false
 # DROP_EXISTING_TABLES only takes affect when RUN_DDL is true, and the default setting
@@ -29,13 +38,24 @@ export RUN_INIT="true"
 export RUN_DDL="true"
 export DROP_EXISTING_TABLES="true"
 
+# step 04_load
 export RUN_LOAD="true"
+
+# step 05_sql
 export RUN_SQL="true"
+export RUN_ANALYZE="true"
+
+# step 06_single_user_reports
 export RUN_SINGLE_USER_REPORTS="true"
 
+# step 07_multi_user
 export RUN_QGEN="true"
 export RUN_MULTI_USER="true"
+
+# step 08_multi_user_reports
 export RUN_MULTI_USER_REPORTS="true"
+
+# step 09_score
 export RUN_SCORE="true"
 
 # misc options
