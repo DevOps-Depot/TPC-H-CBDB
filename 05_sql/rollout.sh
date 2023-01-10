@@ -48,9 +48,9 @@ if [ "${RUN_ANALYZE}" == "true" ]; then
   print_log ${tuples}
 else
   echo "AnalyzeDB Skipped..."
+  tuples="-1"
+  print_log ${tuples}
 fi
-
-rm -f ${TPC_H_DIR}/log/*single.explain_analyze.log
 
 for i in ${PWD}/*.${BENCH_ROLE}.*.sql; do
 	for x in $(seq 1 ${SINGLE_USER_ITERATIONS}); do
