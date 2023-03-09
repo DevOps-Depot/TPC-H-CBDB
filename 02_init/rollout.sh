@@ -29,6 +29,8 @@ function set_segment_bashrc()
         echo "copy new .bashrc to ${ext_host}:${ADMIN_HOME}"
         scp ${PWD}/segment_bashrc ${ext_host}:${ADMIN_HOME}/.bashrc
       else
+        ssh ${ext_host} "sed -i '/greenplum_path.sh/d' ~/.bashrc"
+        ssh ${ext_host} "sed -i '/LD_PRELOAD/d' ~/.bashrc"
         count=$(ssh ${ext_host} "grep greenplum_path ~/.bashrc" 2> /dev/null | wc -l)
         if [ "$count" -eq "0" ]; then
           echo "Adding greenplum_path to ${ext_host} .bashrc"
