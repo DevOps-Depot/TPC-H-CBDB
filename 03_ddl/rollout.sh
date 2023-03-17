@@ -63,7 +63,7 @@ if [ "${DROP_EXISTING_TABLES}" == "true" ]; then
       CHILD=$(echo ${x} | awk -F '|' '{print $1}')
       EXT_HOST=$(echo ${x} | awk -F '|' '{print $2}')
       PORT=$((GPFDIST_PORT + CHILD + flag))
-      let flag=flag+1
+      let flag++
 
       if [ "${counter}" -eq "0" ]; then
         LOCATION="'"
