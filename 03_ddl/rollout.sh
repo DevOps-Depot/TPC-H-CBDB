@@ -59,7 +59,7 @@ if [ "${DROP_EXISTING_TABLES}" == "true" ]; then
       SQL_QUERY="select rank() over(partition by g.hostname order by g.datadir), g.hostname from gp_segment_configuration g where g.content >= 0 and g.role = '${GPFDIST_LOCATION}' order by g.hostname"
     fi
     for x in $(psql -v ON_ERROR_STOP=1 -q -A -t -c "${SQL_QUERY}"); do
-      flag=1
+      flag=10
       CHILD=$(echo ${x} | awk -F '|' '{print $1}')
       EXT_HOST=$(echo ${x} | awk -F '|' '{print $2}')
       PORT=$((GPFDIST_PORT + CHILD + flag))
