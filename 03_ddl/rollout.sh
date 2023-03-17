@@ -61,7 +61,7 @@ if [ "${DROP_EXISTING_TABLES}" == "true" ]; then
     for x in $(psql -v ON_ERROR_STOP=1 -q -A -t -c "${SQL_QUERY}"); do
       CHILD=$(echo ${x} | awk -F '|' '{print $1}')
       EXT_HOST=$(echo ${x} | awk -F '|' '{print $2}')
-      PORT=$((GPFDIST_PORT + CHILD))
+      PORT=$((GPFDIST_PORT + CHILD + x))
 
       if [ "${counter}" -eq "0" ]; then
         LOCATION="'"
