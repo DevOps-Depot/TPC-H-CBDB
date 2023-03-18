@@ -15,8 +15,8 @@ function set_segment_bashrc()
   echo "if [ -f /etc/bashrc ]; then" > ${PWD}/segment_bashrc
   echo "  . /etc/bashrc" >> ${PWD}/segment_bashrc
   echo "fi" >> ${PWD}/segment_bashrc
-  echo "source /usr/local/greenplum-db/greenplum_path.sh" >> ${PWD}/segment_bashrc
-  echo "export LD_PRELOAD=/lib64/libz.so.1 ps" >> ${PWD}/segment_bashrc
+  echo "source ${GREENPLUM_PATH}" >> ${PWD}/segment_bashrc
+  echo "export LD_PRELOAD=${LD_PRELOAD}" >> ${PWD}/segment_bashrc
   chmod 755 ${PWD}/segment_bashrc
 
   echo "set up .bashrc on segment hosts"
