@@ -5,6 +5,7 @@ PWD=$(get_pwd ${BASH_SOURCE[0]})
 
 step="sql"
 init_log ${step}
+get_version
 
 if [ "${RUN_ANALYZE}" == "true" ]; then
 
