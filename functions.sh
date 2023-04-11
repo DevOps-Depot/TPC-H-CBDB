@@ -142,9 +142,9 @@ function get_version() {
     MEDIUM_STORAGE="appendonly=true, orientation=column, compresstype=zlib, compresslevel=5, blocksize=1048576"
     LARGE_STORAGE="appendonly=true, orientation=column, compresstype=zlib, compresslevel=5, blocksize=1048576"
   else
-    SMALL_STORAGE="appendonly=true, orientation=column, compresstype=zstd, compresslevel=10, blocksize=1048576"
-    MEDIUM_STORAGE="appendonly=true, orientation=column, compresstype=zstd, compresslevel=10, blocksize=1048576"
-    LARGE_STORAGE="appendonly=true, orientation=column, compresstype=zstd, compresslevel=10, blocksize=1048576"
+    SMALL_STORAGE="appendonly=true, orientation=column, compresstype=zstd, compresslevel=5, blocksize=1048576"
+    MEDIUM_STORAGE="appendonly=true, orientation=column, compresstype=zstd, compresslevel=5, blocksize=1048576"
+    LARGE_STORAGE="appendonly=true, orientation=column, compresstype=zstd, compresslevel=5, blocksize=1048576"
   fi
   
   export SMALL_STORAGE
