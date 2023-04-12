@@ -74,6 +74,7 @@ for i in ${PWD}/*.${BENCH_ROLE}.*.sql; do
 			tuples="0"
 		fi
 		print_log ${tuples}
+    sleep ${QUERY_INTERVAL}
 	done
 done
 

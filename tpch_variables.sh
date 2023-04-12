@@ -46,6 +46,8 @@ export RUN_LOAD="true"
 # step 05_sql
 export RUN_SQL="true"
 export RUN_ANALYZE="true"
+#set wait time between each query execution
+export QUERY_INTERVAL="1"
 
 # step 06_single_user_reports
 export RUN_SINGLE_USER_REPORTS="true"
