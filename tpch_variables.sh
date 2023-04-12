@@ -53,8 +53,8 @@ export QUERY_INTERVAL="1"
 export RUN_SINGLE_USER_REPORTS="true"
 
 # step 07_multi_user
-export RUN_QGEN="true"
 export RUN_MULTI_USER="true"
+export RUN_QGEN="true"
 
 # step 08_multi_user_reports
 export RUN_MULTI_USER_REPORTS="true"
