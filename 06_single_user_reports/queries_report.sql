@@ -1,5 +1,5 @@
-SELECT split_part(description, '.', 2) AS id,  max(tuples) as tuples, round(min(extract('epoch' from duration))) AS duration
+SELECT split_part(description, '.', 2) AS id,  case max(tuples) when -1 then 'ERROR' else max(tuples)::text end as tuples, round(min(extract('epoch' from duration))) AS duration
 FROM tpch_reports.sql
-WHERE tuples >= 0 
+where id > 1
 GROUP BY split_part(description, '.', 2)
 ORDER BY id;
