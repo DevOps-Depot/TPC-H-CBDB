@@ -47,7 +47,7 @@ export RUN_LOAD="true"
 export RUN_SQL="true"
 export RUN_ANALYZE="true"
 #set wait time between each query execution
-export QUERY_INTERVAL="1"
+export QUERY_INTERVAL="0"
 #Set to 1 if you want to stop when error occurs
 export ON_ERROR_STOP="0"
 
