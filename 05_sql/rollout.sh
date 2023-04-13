@@ -29,13 +29,12 @@ if [ "${RUN_ANALYZE}" == "true" ]; then
   analyzedb -d ${dbname} -s ${SCHEMA_NAME} --full -a
 
   #make sure root stats are gathered
-  if [ "${VERSION}" == "gpdb_5" ]; then
-    SQL_QUERY="select n.nspname, c.relname from pg_class c join pg_namespace n on c.relnamespace = n.oid join pg_partitions p on p.schemaname = n.nspname and p.tablename = c.relname where n.nspname = '${SCHEMA_NAME}' and p.partitionrank is null and c.reltuples = 0 order by 1, 2"
-  elif [ "${VERSION}" == "gpdb_6" ]; then
+  if [ "${VERSION}" == "gpdb_5" ] || [ "${VERSION}" == "gpdb_6" ]; then
     SQL_QUERY="select n.nspname, c.relname from pg_class c join pg_namespace n on c.relnamespace = n.oid left outer join (select starelid from pg_statistic group by starelid) s on c.oid = s.starelid join (select tablename from pg_partitions group by tablename) p on p.tablename = c.relname where n.nspname = '${SCHEMA_NAME}' and s.starelid is null order by 1, 2"
   else
     SQL_QUERY="select n.nspname, c.relname from pg_class c join pg_namespace n on c.relnamespace = n.oid left outer join (select starelid from pg_statistic group by starelid) s on c.oid = s.starelid join pg_partitioned_table p on p.partrelid = c.oid where n.nspname = '${SCHEMA_NAME}' and s.starelid is null order by 1, 2"
   fi
+
   for t in $(psql -v ON_ERROR_STOP=1 -q -t -A -c "${SQL_QUERY}"); do
     schema_name=$(echo ${t} | awk -F '|' '{print $1}')
     table_name=$(echo ${t} | awk -F '|' '{print $2}')
@@ -53,6 +52,12 @@ else
   print_log ${tuples}
 fi
 
+rm -f ${TPC_DS_DIR}/log/*single.explain_analyze.log
+
+if [ "${ON_ERROR_STOP}" == 0 ]; then
+  set +e
+fi
+
 for i in ${PWD}/*.${BENCH_ROLE}.*.sql; do
 	for x in $(seq 1 ${SINGLE_USER_ITERATIONS}); do
 		id=$(echo ${i} | awk -F '.' '{print $1}')
@@ -66,12 +71,19 @@ for i in ${PWD}/*.${BENCH_ROLE}.*.sql; do
 		if [ "${EXPLAIN_ANALYZE}" == "false" -o "${table_name}" == "15" ]; then
 			log_time "psql -v ON_ERROR_STOP=1 -A -q -t -P pager=off -v EXPLAIN_ANALYZE=\"\" -f ${i} | wc -l"
 			tuples=$(psql -v ON_ERROR_STOP=1 -A -q -t -P pager=off -v EXPLAIN_ANALYZE="" -f ${i} | wc -l; exit ${PIPESTATUS[0]})
+      if [ $? != 0 ]; then
+        tuples="-1"
+      fi
 		else
 			myfilename=$(basename ${i})
 			mylogfile=${TPC_H_DIR}/log/${myfilename}.single.explain_analyze.log
 			log_time "psql -v ON_ERROR_STOP=1 -A -e -q -t -P pager=off -v EXPLAIN_ANALYZE=\"EXPLAIN ANALYZE\" -f ${i} > ${mylogfile}"
 			psql -v ON_ERROR_STOP=1 -A -e -q -t -P pager=off -v EXPLAIN_ANALYZE="EXPLAIN ANALYZE" -f ${i} > ${mylogfile}
-			tuples="0"
+      if [ $? != 0 ]; then
+        tuples="-1"
+      else
+        tuples="0"
+      fi
 		fi
 		print_log ${tuples}
     sleep ${QUERY_INTERVAL}
