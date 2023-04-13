@@ -55,14 +55,14 @@ export ON_ERROR_STOP="0"
 export RUN_SINGLE_USER_REPORTS="true"
 
 # step 07_multi_user
-export RUN_MULTI_USER="true"
-export RUN_QGEN="true"
+export RUN_MULTI_USER="false"
+export RUN_QGEN="false"
 
 # step 08_multi_user_reports
-export RUN_MULTI_USER_REPORTS="true"
+export RUN_MULTI_USER_REPORTS="false"
 
 # step 09_score
-export RUN_SCORE="true"
+export RUN_SCORE="false"
 
 # misc options
 export SINGLE_USER_ITERATIONS="1"
