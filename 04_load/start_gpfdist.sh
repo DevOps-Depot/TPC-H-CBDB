@@ -6,7 +6,7 @@ GPFDIST_PORT=${1}
 GEN_DATA_PATH=${2}
 seghost=`hostname`
 
-gpfdist -p ${GPFDIST_PORT} -d ${GEN_DATA_PATH} > gpfdist.${GPFDIST_PORT}.log 2>&1 < gpfdist.${GPFDIST_PORT}.log &
+gpfdist -p ${GPFDIST_PORT} -d ${GEN_DATA_PATH} > ${GEN_DATA_PATH}/gpfdist.${GPFDIST_PORT}.log 2>&1 &
 pid=$!
 
 if [ "${pid}" -ne "0" ]; then
