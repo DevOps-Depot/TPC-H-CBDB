@@ -20,7 +20,7 @@ if [[ ! -d "${DATA_DIRECTORY}" && ! -L "${DATA_DIRECTORY}" ]]; then
 	mkdir ${DATA_DIRECTORY}
 fi
 
-rm -f ${DATA_DIRECTORY}/*tbl*
+rm -f ${DATA_DIRECTORY}/*
 
 #for single nodes, you might only have a single segment but dbgen requires at least 2
 if [ "$PARALLEL" -eq "1" ]; then
