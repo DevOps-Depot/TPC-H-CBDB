@@ -7,6 +7,11 @@ step="sql"
 init_log ${step}
 get_version
 
+start_log
+
+schema_name=${SCHEMA_NAME}
+table_name="analyzedb"
+
 if [ "${RUN_ANALYZE}" == "true" ]; then
 
 # max_id=$(ls ${PWD}/*.sql | tail -1)
@@ -21,10 +26,6 @@ if [ "${RUN_ANALYZE}" == "true" ]; then
     export PGPORT=5432
   fi
 
-  schema_name=${SCHEMA_NAME}
-  table_name="analyzedb"
-
-  start_log
   #Analyze schema using analyzedb
   analyzedb -d ${dbname} -s ${SCHEMA_NAME} --full -a
 
@@ -44,13 +45,12 @@ if [ "${RUN_ANALYZE}" == "true" ]; then
     psql -v ON_ERROR_STOP=1 -q -t -A -c "${SQL_QUERY}"
   done
 
-  tuples="-1"
-  print_log ${tuples}
 else
   echo "AnalyzeDB Skipped..."
-  tuples="-1"
-  print_log ${tuples}
 fi
+
+tuples="-1"
+print_log ${tuples}
 
 rm -f ${TPC_DS_DIR}/log/*single.explain_analyze.log
 
