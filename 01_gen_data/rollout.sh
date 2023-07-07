@@ -55,7 +55,7 @@ function gen_data() {
   for i in $(psql -v ON_ERROR_STOP=1 -q -A -t -c "${SQL_QUERY}"); do
     CHILD=$(echo ${i} | awk -F '|' '{print $1}')
     EXT_HOST=$(echo ${i} | awk -F '|' '{print $2}')
-    GEN_DATA_PATH=$(echo ${i} | awk -F '|' '{print $3}')
+    GEN_DATA_PATH=$(echo ${i} | awk -F '|' '{print $3}' | sed 's#//#/#g')
     GEN_DATA_PATH="${GEN_DATA_PATH}/hbenchmark"
     echo "ssh -n -f ${EXT_HOST} \"bash -c 'cd ~/; ./generate_data.sh ${GEN_DATA_SCALE} ${CHILD} ${PARALLEL} ${GEN_DATA_PATH} > /tmp/tpch.generate_data.${CHILD}.log 2>&1 &'\""
 
