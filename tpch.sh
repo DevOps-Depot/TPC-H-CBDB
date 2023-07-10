@@ -11,6 +11,9 @@ source_bashrc
 
 export TPC_H_DIR=$(get_pwd ${BASH_SOURCE[0]})
 
+log_time "TPC-H test started"
+printf "\n"
+
 # Check that pertinent variables are set in the variable file.
 check_variables
 # Make sure this is being run as gpadmin

@@ -5,6 +5,9 @@ PWD=$(get_pwd ${BASH_SOURCE[0]})
 
 step="single_user_reports"
 
+log_time "Step ${step} started"
+printf "\n"
+
 init_log ${step}
 
 filter="gpdb"
@@ -65,3 +68,5 @@ echo ""
 echo "********************************************************************************"
 
 echo "Finished ${step}"
+log_time "Step ${step} finished"
+printf "\n"

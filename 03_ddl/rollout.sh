@@ -4,6 +4,10 @@ set -e
 PWD=$(get_pwd ${BASH_SOURCE[0]})
 
 step="ddl"
+
+log_time "Step ${step} started"
+printf "\n"
+
 init_log ${step}
 get_version
 
@@ -116,3 +120,5 @@ fi
 print_log
 
 echo "Finished ${step}"
+log_time "Step ${step} finished"
+printf "\n"

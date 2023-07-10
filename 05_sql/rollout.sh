@@ -4,6 +4,10 @@ set -e
 PWD=$(get_pwd ${BASH_SOURCE[0]})
 
 step="sql"
+
+log_time "Step ${step} started"
+printf "\n"
+
 init_log ${step}
 get_version
 
@@ -91,3 +95,5 @@ for i in ${PWD}/*.${BENCH_ROLE}.*.sql; do
 done
 
 echo "Finished ${step}"
+log_time "Step ${step} finished"
+printf "\n"

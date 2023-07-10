@@ -6,6 +6,9 @@ step="multi_user_reports"
 
 init_log ${step}
 
+log_time "Step ${step} started"
+printf "\n"
+
 get_version
 filter="gpdb"
 
@@ -29,3 +32,6 @@ psql -v ON_ERROR_STOP=1 -P pager=off -f ${PWD}/detailed_report.sql
 echo ""
 
 echo "Finished ${step}"
+
+log_time "Step ${step} finished"
+printf "\n"
