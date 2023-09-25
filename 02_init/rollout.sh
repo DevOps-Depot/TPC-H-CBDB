@@ -56,7 +56,7 @@ function check_gucs()
 {
   update_config="0"
 
-  if [ "${VERSION}" == "gpdb_5" ]; then
+  if [ "${VERSION}" == "gpdb_4_3" ] || [ "${VERSION}" == "gpdb_5" ]; then
     counter=$(psql -v ON_ERROR_STOP=1 -q -t -A -c "show optimizer_join_arity_for_associativity_commutativity" | grep -i "18" | wc -l; exit ${PIPESTATUS[0]})
     if [ "${counter}" -eq "0" ]; then
       echo "setting optimizer_join_arity_for_associativity_commutativity"

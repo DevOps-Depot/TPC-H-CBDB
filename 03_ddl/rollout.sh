@@ -15,7 +15,7 @@ filter="gpdb"
 schema_name=${SCHEMA_NAME}
 ext_schema_name="ext_${SCHEMA_NAME}"
 
-if [ "${VERSION}" == "gpdb_5" ] || [ "${VERSION}" == "gpdb_4_3" ]; then
+if [ "${VERSION}" == "gpdb_4_3" ] || [ "${VERSION}" == "gpdb_5" ]; then
   distkeyfile="distribution_original.txt"
 else
   distkeyfile="distribution.txt"
