@@ -20,7 +20,7 @@ function create_directories()
 create_directories
 
 echo "############################################################################"
-echo "TPC-H Script for Pivotal Greenplum Database."
+echo "TPC-H Script for Greenplum Database."
 echo "############################################################################"
 echo ""
 echo "############################################################################"
