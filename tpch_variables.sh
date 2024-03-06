@@ -67,13 +67,13 @@ export RUN_SCORE="false"
 # misc options
 export SINGLE_USER_ITERATIONS="1"
 export EXPLAIN_ANALYZE="false"
+export ENABLE_VECTORIZATION="false"
 export RANDOM_DISTRIBUTION="false"
 export STATEMENT_MEM="2GB"
 export STATEMENT_MEM_MULTI_USER="1GB"
 
 # Set gpfdist location where gpfdist will run p (primary) or m (mirror)
 export GPFDIST_LOCATION="p"
-
 export OSVERSION=$(uname)
 export ADMIN_USER=$(whoami)
 export ADMIN_HOME=$(eval echo ${HOME}/${ADMIN_USER})

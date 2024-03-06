@@ -47,6 +47,10 @@ function generate_queries()
 		printf "set optimizer=${optimizer};\n" >> ${sql_dir}/${filename}
 		printf "set statement_mem=\"${STATEMENT_MEM_MULTI_USER}\";\n" >> ${sql_dir}/${filename}
 		printf ":EXPLAIN_ANALYZE\n" >> ${sql_dir}/${filename}
+
+		if [ "$ENABLE_VECTORIZATION" = "true" ]; then  
+          printf "set vector.enable_vectorization=on;\n" >> ${sql_dir}/${filename}
+	    fi
 		
 		echo "sed -n \"$start_position\",\"$end_position\"p $sql_dir/$tpch_query_name >> $sql_dir/$filename"
 		sed -n "$start_position","$end_position"p $sql_dir/$tpch_query_name >> $sql_dir/$filename
