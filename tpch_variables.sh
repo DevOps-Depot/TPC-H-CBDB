@@ -71,6 +71,8 @@ export ENABLE_VECTORIZATION="false"
 export RANDOM_DISTRIBUTION="false"
 export STATEMENT_MEM="2GB"
 export STATEMENT_MEM_MULTI_USER="1GB"
+export TABLE_FORMAT="AO"
+# Set to AO or PAX to choose table format
 
 # Set gpfdist location where gpfdist will run p (primary) or m (mirror)
 export GPFDIST_LOCATION="p"
