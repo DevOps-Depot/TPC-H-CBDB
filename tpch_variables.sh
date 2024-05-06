@@ -71,7 +71,8 @@ export ENABLE_VECTORIZATION="false"
 export RANDOM_DISTRIBUTION="false"
 export STATEMENT_MEM="2GB"
 export STATEMENT_MEM_MULTI_USER="1GB"
-export TABLE_ACCESS_METHOD="ao_column"
+export TABLE_ACCESS_METHOD="pax"
+export TABLE_STORAGE_OPTIONS="compresstype=zstd, compresslevel=5"
 # Set to heap/ao_row/ao_column/pax for different table format
 
 # Set gpfdist location where gpfdist will run p (primary) or m (mirror)
