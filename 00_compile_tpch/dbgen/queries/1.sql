@@ -21,7 +21,7 @@ from
 where
 	l_shipdate <= date '1998-12-01' - interval '90 days'
 group by
-	l_returnflag,s
+	l_returnflag,
 	l_linestatus
 order by
 	l_returnflag,
