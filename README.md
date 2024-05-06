@@ -238,6 +238,11 @@ RANDOM_DISTRIBUTION="false"
 SINGLE_USER_ITERATIONS="1"
 STATEMENT_MEM="2GB"
 STATEMENT_MEM_MULTI_USER='1GB'
+ENABLE_VECTORIZATION="false"
+TABLE_ACCESS_METHOD="ao_column"
+# Set to heap/ao_row/ao_column/pax for different table format
+TABLE_STORAGE_OPTIONS="compresstype=zstd, compresslevel=5, blocksize=1048576"
+# Set different storage options for each access method
 ```
 
 These are miscellaneous controlling variables:
@@ -252,6 +257,9 @@ These are miscellaneous controlling variables:
   This can be used to ensure the power test is in a `warm` run environment.
 - `STATEMENT_MEM`: default 2GB which set the `statement_mem` parameter for each statement of single user test. Set with `GB` or `MB`. STATEMENT_MEM should be less than gp_vmem_protect_limit.
 - `STATEMENT_MEM_MULTI_USER`: default 1GB which set the `statement_mem` parameter for each statement of multiple user test. Set with `GB` or `MB`. Please note that, `STATEMENT_MEM_MULTI_USER` * `MULTI_USER_COUNT` should be less than `gp_vmem_protect_limit`.
+- `ENABLE_VECTORIZATION`: set to true to enable vectorization computing for better performance. Feature is suppported as of Lightning 1.5.3. Default is false. Only works for AO with column and PAX table type.
+- `TABLE_ACCESS_METHOD`: define the table type for the test, available options are HEAP, AO with row, AO with column and PAX (supported as of Lightning 1.5.3).  
+- `TABLE_STORAGE_OPTIONS`: more storage configurations could be defiend, options are different for each table type, refer to docuemntation for more detail.
 
 #### Storage Options
 
