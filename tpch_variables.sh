@@ -73,7 +73,7 @@ export STATEMENT_MEM="2GB"
 export STATEMENT_MEM_MULTI_USER="1GB"
 export TABLE_ACCESS_METHOD="ao_column"
 # Set to heap/ao_row/ao_column/pax for different table format
-export TABLE_STORAGE_OPTIONS="compresstype=zstd, compresslevel=5, blocksize=1048576"
+export TABLE_STORAGE_OPTIONS="appendoptimized=true compresstype=zstd, compresslevel=5, blocksize=1048576"
 # Set different storage options for each access method
 export GPFDIST_LOCATION="p"
 # Set gpfdist location where gpfdist will run p (primary) or m (mirror)
