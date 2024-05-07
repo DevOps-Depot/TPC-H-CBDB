@@ -38,12 +38,9 @@ for i in $(ls $PWD/*.sql |  xargs -n 1 basename); do
     done
 	printf "set optimizer=${optimizer};\n" >> ${TPC_H_DIR}/05_sql/${filename}
 	printf "set statement_mem=\"${STATEMENT_MEM}\";\n" >> ${TPC_H_DIR}/05_sql/${filename}
+	printf "set vector.enable_vectorization=${ENABLE_VECTORIZATION};\n" >> ${TPC_H_DIR}/05_sql/${filename}
 	printf ":EXPLAIN_ANALYZE\n" >> ${TPC_H_DIR}/05_sql/${filename}
-
-	if [ "$ENABLE_VECTORIZATION" = "true" ]; then  
-      printf "set vector.enable_vectorization=on;\n" >> ${TPC_H_DIR}/05_sql/${filename}
-	fi
-
+	
 	echo "./qgen -d -s ${GEN_DATA_SCALE} $q >> $PWD/../../05_sql/$filename"
 	$PWD/qgen -d -s ${GEN_DATA_SCALE} $q >> $PWD/../../05_sql/$filename
 done
