@@ -75,9 +75,8 @@ export TABLE_ACCESS_METHOD="ao_column"
 # Set to heap/ao_row/ao_column/pax for different table format
 export TABLE_STORAGE_OPTIONS="compresstype=zstd, compresslevel=5, blocksize=1048576"
 # Set different storage options for each access method
-
-# Set gpfdist location where gpfdist will run p (primary) or m (mirror)
 export GPFDIST_LOCATION="p"
+# Set gpfdist location where gpfdist will run p (primary) or m (mirror)
 export OSVERSION=$(uname)
 export ADMIN_USER=$(whoami)
 export ADMIN_HOME=$(eval echo ${HOME}/${ADMIN_USER})
