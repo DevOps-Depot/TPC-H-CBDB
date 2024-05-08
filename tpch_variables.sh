@@ -83,4 +83,4 @@ export LD_PRELOAD=/lib64/libz.so.1 ps
 ## Set to heap/ao_row/ao_column/pax for different table format
 export TABLE_ACCESS_METHOD="ao_column"
 ## Set different storage options for each access method
-export TABLE_STORAGE_OPTIONS="appendoptimized=true compresstype=zstd, compresslevel=5, blocksize=1048576"
+export TABLE_STORAGE_OPTIONS="appendoptimized=true, compresstype=zstd, compresslevel=5, blocksize=1048576"
