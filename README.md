@@ -239,7 +239,7 @@ export ENABLE_VECTORIZATION="off"
 export RANDOM_DISTRIBUTION="false"
 export STATEMENT_MEM="2GB"
 export STATEMENT_MEM_MULTI_USER="1GB"
-## Set different storage options for each access method
+## Set gpfdist location where gpfdist will run p (primary) or m (mirror)
 export GPFDIST_LOCATION="p"
 export OSVERSION=$(uname)
 export ADMIN_USER=$(whoami)
